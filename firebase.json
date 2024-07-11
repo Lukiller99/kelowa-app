@@ -1,6 +1,6 @@
 {
     "hosting": {
-      "site": "kelowna-d0beb-8dc23",
+
       "public": "public",
       "ignore": [
         "firebase.json",
