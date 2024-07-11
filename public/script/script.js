@@ -128,6 +128,8 @@ function CalcGroupDiscount(groupSize) {
 }
 
 
+
+
 /*
 * Function to add a group member to the selection list.
 * 
@@ -151,9 +153,11 @@ function AddGroupMember(lastName, firstName) {
 * 
 */
 function RemoveGroupMember() {
-
-	throw "ERROR! You must work in this function before to send to Staging Environment!";
-
+    if (membersLst.selectedIndex !== -1) {
+        membersLst.remove(membersLst.selectedIndex);
+    } else {
+        throw "Please select a group member to remove.";
+    }
 }
 
 /*
