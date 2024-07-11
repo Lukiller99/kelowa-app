@@ -1,34 +1,34 @@
 pipeline {
     agent any
+
     stages {
-        stage('Building') {
+        stage('Checkout') {
             steps {
-                echo 'Building...'
-                // Aquí podrías agregar pasos para instalar dependencias o compilar tu aplicación si es necesario
+                // Clona tu repositorio o realiza cualquier acción necesaria para obtener el código fuente
+                git 'https://github.com/tu-usuario/tu-repo.git'
             }
         }
-        stage('Testing Environment') {
+
+        stage('Build') {
             steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-testing --token "$FIREBASE_SERVICE_ACCOUNT"'
-                }
-                input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
+                // No se necesita ninguna acción de compilación explícita para archivos estáticos
             }
         }
-        stage('Staging Environment') {
+
+        stage('Deploy to Firebase Hosting') {
             steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-staging --token "$FIREBASE_SERVICE_ACCOUNT"'
-                }
-            }
-        }
-        stage('Production Environment') {
-            steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-production-bcfd9 --token "$FIREBASE_SERVICE_ACCOUNT"'
+                // Utiliza Firebase CLI para desplegar a Firebase Hosting
+                script {
+                    def FIREBASE_TOKEN = credentials('firebase-service-account')
+
+                    // Instalar Firebase CLI si no está instalado
+                    sh 'npm install -g firebase-tools'
+
+                    // Autenticar con Firebase usando el archivo de cuenta de servicio
+                    withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
+                        sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
+                        sh 'firebase deploy --only hosting'
+                    }
                 }
             }
         }
