@@ -9,26 +9,35 @@ pipeline {
         }
         stage('Testing Environment') {
             steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-testing --token "$FIREBASE_SERVICE_ACCOUNT"'
+                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
+                    sh '''
+                        export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
+                        firebase use --project Kelowna
+                        firebase deploy --only hosting -P devops-proj-testing
+                    '''
                 }
                 input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
             }
         }
         stage('Staging Environment') {
             steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-staging --token "$FIREBASE_SERVICE_ACCOUNT"'
+                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
+                    sh '''
+                        export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
+                        firebase use --project Kelowna
+                        firebase deploy --only hosting -P devops-proj-staging
+                    '''
                 }
             }
         }
         stage('Production Environment') {
             steps {
-                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT')]) {
-                    sh 'firebase use --token "$FIREBASE_SERVICE_ACCOUNT"'
-                    sh 'firebase deploy -P devops-proj-production-bcfd9 --token "$FIREBASE_SERVICE_ACCOUNT"'
+                withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
+                    sh '''
+                        export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
+                        firebase use --project Kelowna
+                        firebase deploy --only hosting -P devops-proj-production-bcfd9
+                    '''
                 }
             }
         }
