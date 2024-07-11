@@ -14,7 +14,7 @@ pipeline {
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
                         firebase use --project kelowna-d0beb
 
-                        firebase deploy --only hosting -P kelowna-d0beb-a1e56
+                        firebase deploy --only hosting -P kelowna-d0beb-8dc23
                     '''
                 }
                 // input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
@@ -27,7 +27,7 @@ pipeline {
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
                         firebase use --project kelowna-d0beb
 
-                        firebase deploy --only hosting -P kelowna-d0beb-a1e56
+                        firebase deploy --only hosting -P kelowna-d0beb-8dc23
                     '''
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
                         firebase use --project kelowna-d0beb
 
-                        firebase deploy --only hosting -P kelowna-d0beb-a1e56
+                        firebase deploy --only hosting -P kelowna-d0beb-8dc23
                     '''
                 }
             }
