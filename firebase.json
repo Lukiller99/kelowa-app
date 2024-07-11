@@ -1,23 +1,7 @@
-  {
+{
     "hosting": {
-      "staging": {
-        "site": "kelowna-d0beb-a1e56",
-        "public": "staging/public",
-        "ignore": [
-          "firebase.json",
-          "**/.*",
-          "**/node_modules/**"
-        ]
-      },
-      "production": {
-        "site": "kelowna-d0beb-8dc23",
-        "public": "production/public",
-        "ignore": [
-          "firebase.json",
-          "**/.*",
-          "**/node_modules/**"
-        ]
-      }
+      "site": "kelowna-d0beb-a1e56",
+  
+      "public": "public"
     }
   }
-  
