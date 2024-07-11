@@ -1,6 +1,17 @@
 {
     "hosting": {
-      "site": "kelowna-d0beb-a1e56",
-      "public": "public"
+      "public": "public",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   }
+  
