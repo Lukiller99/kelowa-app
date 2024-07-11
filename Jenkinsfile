@@ -16,7 +16,7 @@ pipeline {
                         firebase deploy --only hosting -P devops-proj-testing
                     '''
                 }
-                input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
+                // input message: 'After testing. Do you want to continue with Staging Environment? (Click "Proceed" to continue)'
             }
         }
         stage('Staging Environment') {
