@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                // Clona tu repositorio o realiza cualquier acción necesaria para obtener el código fuente
-                git 'https://github.com/tu-usuario/tu-repo.git'
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         // Clona tu repositorio o realiza cualquier acción necesaria para obtener el código fuente
+        //         git 'https://github.com/tu-usuario/tu-repo.git'
+        //     }
+        // }
 
         stage('Build') {
             steps {
