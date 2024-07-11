@@ -1,18 +1,23 @@
 {
     "hosting": {
-
-      "public": "public",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ],
-      "rewrites": [
-        {
-          "source": "**",
-          "destination": "/index.html"
-        }
-      ]
+      "staging": {
+        "site": "kelowna-d0beb-a1e56",  
+        "public": "staging",     
+        "ignore": [
+          "firebase.json",      
+          "**/.*",               
+          "**/node_modules/**"   
+        ]
+      },
+      "production": {
+        "site": "kelowna-d0beb-8dc23",  
+        "public": "production",     
+        "ignore": [
+          "firebase.json",
+          "**/.*",
+          "**/node_modules/**"
+        ]
+      }
     }
   }
   
