@@ -5,8 +5,8 @@ pipeline {
             steps {
                 echo 'Building...'
                 // Aquí podrías agregar pasos para instalar dependencias o compilar tu aplicación si es necesario
-                sh 'npm install'
-                sh 'npm run build'
+                // sh 'npm install'
+                // sh 'npm run build'
             }
         }
         stage('Staging Environment') {
