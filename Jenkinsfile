@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Production Environment') {
             when {
-                branch 'main'
+                branch 'master'
             }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
