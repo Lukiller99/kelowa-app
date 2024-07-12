@@ -17,7 +17,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
                     sh '''
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
-                        firebase use --project kelowna-d0beb || firebase use --add kelowna-d0beb
+                        firebase use --add kelowna-d0beb
+                        firebase use --project kelowna-d0beb
 
                         firebase target:apply hosting staging kelowna-d0beb-a1e56
                         firebase deploy --only hosting:staging
@@ -33,7 +34,8 @@ pipeline {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
                     sh '''
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
-                        firebase use --project kelowna-d0beb || firebase use --add kelowna-d0beb
+                        firebase use --add kelowna-d0beb
+                        firebase use --project kelowna-d0beb 
 
                         firebase target:apply hosting production kelowna-d0beb-8dc23
                         firebase deploy --only hosting:production
