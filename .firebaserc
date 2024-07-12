@@ -1,0 +1,10 @@
+{
+  "targets": {
+    "kelowna-d0beb": {
+      "hosting": {
+        "staging": ["a1e56"],
+        "production": ["8dc23"]
+      }
+    }
+  }
+}
