@@ -31,10 +31,7 @@ pipeline {
         }
         stage('Production Environment') {
             when {
-                not{
-                    branch 'staging'
-                }
-
+                    branch 'main'
             }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
