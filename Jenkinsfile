@@ -10,16 +10,16 @@ pipeline {
             }
         }
         stage('Staging Environment') {
-            // when {
-            //     branch 'staging'
-            // }
+            when {
+                branch 'staging'
+            }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
                     sh '''
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
-                        firebase use --add kelowna-d0beb
                         firebase use --project kelowna-d0beb
 
+                        firebase target:clear hosting staging
                         firebase target:apply hosting staging kelowna-d0beb-a1e56
                         firebase deploy --only hosting:staging
                     '''
@@ -27,16 +27,16 @@ pipeline {
             }
         }
         stage('Production Environment') {
-            // when {
-            //     branch 'main'
-            // }
+            when {
+                branch 'main'
+            }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
                     sh '''
                         export GOOGLE_APPLICATION_CREDENTIALS=$FIREBASE_SERVICE_ACCOUNT_JSON
-                        firebase use --add kelowna-d0beb
-                        firebase use --project kelowna-d0beb 
+                        firebase use --project kelowna-d0beb
 
+                        firebase target:clear hosting production
                         firebase target:apply hosting production kelowna-d0beb-8dc23
                         firebase deploy --only hosting:production
                     '''
