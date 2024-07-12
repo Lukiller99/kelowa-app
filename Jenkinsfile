@@ -12,7 +12,7 @@ pipeline {
         stage('Staging Environment') {
             when {
                 not {
-                    branch 'master'
+                    branch 'main'
                 }
                 
             }
