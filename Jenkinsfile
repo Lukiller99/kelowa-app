@@ -11,7 +11,10 @@ pipeline {
         }
         stage('Staging Environment') {
             when {
-                branch 'origin/staging'
+                not {
+                    branch 'master'
+                }
+                
             }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
@@ -27,9 +30,9 @@ pipeline {
             }
         }
         stage('Production Environment') {
-            when {
-                branch 'origin/main'
-            }
+            // when {
+            //     branch 'remotes/origin/main'
+            // }
             steps {
                 withCredentials([file(credentialsId: 'firebase-service-account', variable: 'FIREBASE_SERVICE_ACCOUNT_JSON')]) {
                     sh '''
